@@ -4,7 +4,6 @@ import Card from "./shared/Card" //imported styles
 
 function FeedbackItem({item, handleDelete}) { //Each feedback card, receives state from data folder 
  
-
   return (
     <Card>
         <div className="num-display">{item.rating}</div> 

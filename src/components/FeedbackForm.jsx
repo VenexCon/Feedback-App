@@ -5,7 +5,10 @@ import {useState} from 'react'
 
 
 function FeedbackForm({handleAdd}) {
-
+  //uses ES6 destructuring from props.handleAdd to just {handleAdd}
+  console.log(handleAdd)
+  
+// this state is local state and as such, only pertains to the FeedbackForm and it's relevant children elements/functions.
 const [text, setText] = useState('')
 const [btnDisabled, setBtnDisabled] = useState(true)
 const [message, setMessage] = useState('')
@@ -19,19 +22,19 @@ const handleTextChange = (e) =>{
     setMessage('Text must be at least 10 characters')
     setBtnDisabled(true)
   } else {
-    setMessage(null)
+    setMessage('All good, submit when ready')
     setBtnDisabled(false)
   }
 
-    setText(e.target.value)
+    setText(e.target.value) //grabs the value from the text input in the return 
 }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if(text.trim().length > 10) {
-      const newFeedback  ={
-        text,
-        rating
+      const newFeedback  ={ //returns a new object from the submitted form, this is passed into the app.js function handleAdd. 
+        text, //local state
+        rating //local state
       }
 
       handleAdd(newFeedback)
@@ -41,10 +44,10 @@ const handleTextChange = (e) =>{
 
   return (
     <Card>
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} > {/* here we assign the onSubmit function, with a function expression.  */}
             <h2>How would you rate your service with us?</h2>
-            <RatingSelect select = {(rating) => {
-              setRating(rating)
+            <RatingSelect select = {(rating) => {  /* here we declare a prop on the RatingSelect component, we need to catch this, in this component */
+              setRating(rating) // here we call the setRating function, for the local rating state. 
             }} />
             <div className="input-group">
                 <input onChange={handleTextChange} 

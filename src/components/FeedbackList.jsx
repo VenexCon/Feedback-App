@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import FeedbackItem from "./FeedbackItem"
 import {motion, AnimatePresence} from 'framer-motion'
 
-function FeedbackList({feedback, handleDelete}) { //App passes in feedback data
+function FeedbackList({feedback, handleDelete}) { //destructure the properties as passed to the FeedbackList
     if (!feedback || feedback.length === 0) {
         return <p>No Feedback yet</p>
     }
@@ -10,7 +10,7 @@ function FeedbackList({feedback, handleDelete}) { //App passes in feedback data
     return (
     <div className="feedback-list">
         <AnimatePresence>
-        {feedback.map((item) => (
+        {feedback.map((item) => ( //map over the 
             <motion.div 
             key={item.id}
             initial= {{opacity: 0}}

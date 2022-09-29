@@ -1,11 +1,11 @@
 import {useState} from 'react'
 
 
-function RatingSelect({select}) {
+function RatingSelect({select}) { //select is destructed from the prop as declared on the FeedbackForm
 
-    const [selected, setSelected] = useState(10)
+    const [selected, setSelected] = useState(10) //local state for RatingSelect
 
-    const handleChange = (e) => {
+    const handleChange = (e) => { //this updates the local state. 
         setSelected(+e.currentTarget.value)
         select(+e.currentTarget.value)
     }
@@ -19,7 +19,7 @@ function RatingSelect({select}) {
             id={`num${i + 1}`}
             name='rating'
             value={i + 1}
-            onChange={handleChange}
+            onChange={handleChange} //here we declare a function for the onChange event, this is dealt with at a local level.
             checked={selected === i + 1}
           />
           <label htmlFor={`num${i + 1}`}>{i + 1}</label>

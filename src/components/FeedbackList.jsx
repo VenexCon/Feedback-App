@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 import FeedbackItem from "./FeedbackItem"
 import {motion, AnimatePresence} from 'framer-motion'
+import {useContext} from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
-function FeedbackList({feedback, handleDelete}) { //destructure the properties as passed to the FeedbackList
+function FeedbackList() {//destructure the properties as passed to the FeedbackList
+    
+    const {feedback} = useContext(FeedbackContext)
+    
     if (!feedback || feedback.length === 0) {
         return <p>No Feedback yet</p>
     }
@@ -19,30 +24,14 @@ function FeedbackList({feedback, handleDelete}) { //destructure the properties a
             >
             <FeedbackItem 
             key={item.id} 
-            item = {item} 
-            handleDelete ={handleDelete}  />
+            item = {item}   />
             </motion.div>
         ))}
         </AnimatePresence>
     </div>
   )
 
-  /* return (
-    <div className="feedback-list">
-        {feedback.map((item) => (
-            <FeedbackItem 
-            key={item.id} 
-            item = {item} 
-            handleDelete ={handleDelete}  />
-        ))}
-    </div>
-  ) */
-
-
 }
 
-FeedbackList.propTypes = {
-    feedback : PropTypes.array.isRequired
-}
 
 export default FeedbackList

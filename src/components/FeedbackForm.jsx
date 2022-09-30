@@ -2,17 +2,19 @@ import Card from "./shared/Card"
 import RatingSelect from "./RatingSelect"
 import Button from "./shared/Button"
 import {useState} from 'react'
+import { useContext } from "react"
+import FeedbackContext from "../context/FeedbackContext"
 
 
-function FeedbackForm({handleAdd}) {
-  //uses ES6 destructuring from props.handleAdd to just {handleAdd}
-  console.log(handleAdd)
-  
+function FeedbackForm() {
+ 
 // this state is local state and as such, only pertains to the FeedbackForm and it's relevant children elements/functions.
 const [text, setText] = useState('')
 const [btnDisabled, setBtnDisabled] = useState(true)
 const [message, setMessage] = useState('')
 const [rating, setRating] = useState(10)
+
+const {addFeedback} = useContext(FeedbackContext)
 
 const handleTextChange = (e) =>{
   if(text === ''){
@@ -37,7 +39,7 @@ const handleTextChange = (e) =>{
         rating //local state
       }
 
-      handleAdd(newFeedback)
+      addFeedback(newFeedback)
       setText('')
     }
   }

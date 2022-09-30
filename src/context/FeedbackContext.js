@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const FeedbackContext = createContext();
 
@@ -7,11 +8,32 @@ export const FeedBackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState([
     {
       id: 1,
-      text: "This is from the Context",
+      text: "This is Feedback item 1",
       rating: 10,
     },
+    {
+      id: 2,
+      text: "This is Feedback item 1",
+      rating: 9,
+    },
+    {
+      id: 4,
+      text: "This is Feedback item 1",
+      rating: 5,
+    },
   ]);
+  const [feedbackEdit, setFeedbackEdit] = useState({
+    item: {},
+    edit: false,
+  });
 
+  //to add additional/ new feedback
+  const addFeedback = (newFeedback) => {
+    // addFeedback is a prop on the FeedbackForm component
+    newFeedback.id = uuidv4(); //uses a library to assign an id as it is a list/array
+    setFeedback([newFeedback, ...feedback]); // uses the spread operator to take the existing feedback and then append the new feedback to -g state
+  };
+  //filters the initial state
   const deleteFeedback = (id) => {
     // is a prop on the FeedbackList component that accepts an id
     if (window.confirm("Are you sure?")) {
@@ -19,11 +41,22 @@ export const FeedBackProvider = ({ children }) => {
     }
   };
 
+  //set item to be updated
+  const editFeedback = (item) => {
+    console.log(item);
+    setFeedbackEdit({
+      item,
+      edit: true,
+    });
+  };
+
   return (
     <FeedbackContext.Provider
       value={{
         feedback,
         deleteFeedback,
+        addFeedback,
+        editFeedback,
       }}
     >
       {children}

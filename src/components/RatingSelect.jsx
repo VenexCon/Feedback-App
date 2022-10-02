@@ -1,9 +1,16 @@
-import {useState} from 'react'
+import {useState, useContext, useEffect} from 'react'
+import FeedbackContext from "../context/FeedbackContext"
 
 
 function RatingSelect({select}) { //select is destructed from the prop as declared on the FeedbackForm
 
     const [selected, setSelected] = useState(10) //local state for RatingSelect
+
+    const {feedbackEdit} = useContext(FeedbackContext)
+
+    useEffect(() => {
+      setSelected(feedbackEdit.item.rating)
+    },[feedbackEdit])
 
     const handleChange = (e) => { //this updates the local state. 
         setSelected(+e.currentTarget.value)

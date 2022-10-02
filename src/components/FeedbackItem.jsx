@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import FeedbackContext from '../context/FeedbackContext'
 
 
-function FeedbackItem({item}) { //Each feedback card, receives state from data folder 
+function FeedbackItem({item}) { 
 
   const {deleteFeedback, editFeedback} = useContext(FeedbackContext)
  

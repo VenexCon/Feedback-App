@@ -42,17 +42,26 @@ export const FeedBackProvider = ({ children }) => {
   };
 
   //filters the initial state
-  const deleteFeedback = (id) => {
+  const deleteFeedback = async (id) => {
     // is a prop on the FeedbackList component that accepts an id
     if (window.confirm("Are you sure?")) {
+      await fetch(`/feedback/${id}`, { method: "DELETE" });
       setFeedback(feedback.filter((item) => item.id !== id)); // this then filters the array, to only allow the items without the selected id to pass.
     }
   };
 
   //update feedback item
-  const updateFeedback = (id, updItem) => {
+  const updateFeedback = async (id, updItem) => {
+    const response = await fetch(`/feedback/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updItem),
+    });
+    const data = await response.json();
     setFeedback(
-      feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+      feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
     );
   };
 

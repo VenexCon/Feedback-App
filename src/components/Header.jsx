@@ -22,7 +22,7 @@ function Header({text, bgColor, textColor}) { //jsx, takes the declared props an
 Header.defaultProps = { // this passes default props to the header element, we need to tell the header to accept props, it then destructures that. 
     text:'Feedback UI',
     bgColor: 'rgba(0, 0, 0, 0.4)',
-    textColor: '#ff6a95',
+    textColor: '#ffff',
 }
 
 Header.propTypes = { // ensures that only the props of the correct type are allowed, otherwise throws errors. 

@@ -22,12 +22,7 @@ function App() {
             element={
               <>
                 <div className="container">
-                  <FeedbackForm />{" "}
-                  {/* we are passing in the handleAdd as a prop, that contains a function. */}
-                  <FeedbackStats />{" "}
-                  {/* passing in a prop that takes feedback, this then needs to be caught by the FeedbackStats component */}
-                  <FeedbackList />{" "}
-                  {/* we assign props here, because this is where the global state will be passed */}
+                  <FeedbackForm /> <FeedbackStats /> <FeedbackList />{" "}
                   <AboutIconLink />
                 </div>
               </>

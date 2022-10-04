@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 
 const FeedbackContext = createContext();
@@ -20,20 +19,28 @@ export const FeedBackProvider = ({ children }) => {
   //fetch feedbvack
 
   const fetchFeedback = async () => {
-    const response = await fetch(
-      `http://localhost:5000/feedback?_sort=id&_order=desc`
-    );
+    const response = await fetch(`/feedback?_sort=id&_order=desc`);
     const data = await response.json();
     setFeedback(data);
     setIsLoading(false);
   };
 
   //to add additional/ new feedback
-  const addFeedback = (newFeedback) => {
-    // addFeedback is a prop on the FeedbackForm component
-    newFeedback.id = uuidv4(); //uses a library to assign an id as it is a list/array
-    setFeedback([newFeedback, ...feedback]); // uses the spread operator to take the existing feedback and then append the new feedback to -g state
+  const addFeedback = async (newFeedback) => {
+    const response = await fetch(`/feedback`, {
+      method: "POST",
+      Headers: {
+        "Content-Type": `application/json`,
+      },
+      body: JSON.stringify(newFeedback),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    setFeedback([data, ...feedback]);
   };
+
   //filters the initial state
   const deleteFeedback = (id) => {
     // is a prop on the FeedbackList component that accepts an id

@@ -2,7 +2,7 @@
 
 <hr>
 <p align="center">
- <h3>Competencies</h3>
+ <h3>Software Used</h3>
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=git,react,javascript,html,tailwind" />
   </a>

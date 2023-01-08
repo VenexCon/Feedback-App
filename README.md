@@ -1,6 +1,12 @@
 <h1>Feedback App</h1>
 
 <hr>
+<p align="center">
+ <h3>Competencies</h3>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,react,javascript,html,tailwind" />
+  </a>
+</p>
 
 <h3>About </h3>
 
